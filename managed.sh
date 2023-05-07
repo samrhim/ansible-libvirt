@@ -3,14 +3,15 @@
 echo "Managed Node Preparation ..."
 
 yum install -y epel-release wget vim nano
-yum makecache --refresh
+curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
+yum makecache
 yum update -y
-yum install -y python39 bind-utils neofetch
+yum install -y python39 bind-utils neofetch figlet
 
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 systemctl restart sshd
 
-PASS=$(echo "control" | openssl passwd -1 -stdin)
+PASS=$(echo "ansible" | openssl passwd -1 -stdin)
 useradd -p "$PASS" ansible
 cat <<EOF > /etc/sudoers.d/ansible
 ansible ALL=NOPASSWD: ALL

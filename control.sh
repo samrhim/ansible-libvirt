@@ -2,9 +2,10 @@
 echo "Control Node Preparation ..."
 
 yum update -y
-yum install -y epel-release wget figlet
+yum install -y epel-release wget
+curl -o /etc/yum.repos.d/konimex-neofetch-epel-7.repo https://copr.fedorainfracloud.org/coprs/konimex/neofetch/repo/epel-7/konimex-neofetch-epel-7.repo
 yum makecache
-yum install -y python39 python39-pip git ansible=3.2.6 bind-utils vim bash-completion neofetch nano sshpass
+yum install -y python39 python39-pip git ansible=3.2.6 bind-utils vim bash-completion neofetch nano sshpass figlet
 # wget http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/sshpass-1.09-4.el8.x86_64.rpm
 # rpm -i sshpass-1.09-4.el8.x86_64.rpm
 

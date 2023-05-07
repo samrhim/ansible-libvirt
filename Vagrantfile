@@ -33,8 +33,8 @@ Vagrant.configure("2") do |config|
   
   (1..NUM_MANAGED_NODE).each do |i|
     
-	config.vm.define "ansible#{i}" do |node|
-	    node.vm.hostname = "ansible#{i}.clevory.local"
+	config.vm.define "node#{i}" do |node|
+	    node.vm.hostname = "node#{i}.clevory.local"
       node.vm.network :private_network, ip: IP_NW + "#{MANAGED_IP_START + i}", dev: "virbr2", mode: "open"
 	    node.vm.provision "shell", path: "managed.sh"
       node.vm.provider "libvirt" do |libvirt|

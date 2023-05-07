@@ -1,8 +1,8 @@
 # -*- mode: ruby -*-
 # vi:set ft=ruby sw=2 ts=2 sts=2:
 
-NUM_MANAGED_NODE = 2
-IP_NW = "192.168.56."
+NUM_MANAGED_NODE = 3
+IP_NW = "192.168.10."
 MANAGED_IP_START = 200
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
@@ -11,7 +11,7 @@ MANAGED_IP_START = 200
 
 Vagrant.configure("2") do |config|
   
-  config.vm.box = "centos/8"
+  config.vm.box = "centos/7"
   config.vm.box_check_update = false
   config.ssh.insert_key = false
 
@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
     
     config.vm.define "control" do |control|
     control.vm.hostname = "control.clevory.local"
-		control.vm.network :private_network, ip: "192.168.56.200", dev: "virbr2", mode: "open" 
+		control.vm.network :private_network, ip: "192.168.10.200", dev: "virbr2", mode: "open" 
 	  control.vm.provision "shell", path: "control.sh"
     control.vm.provider "libvirt" do |libvirt|
           libvirt.memory = 2048
